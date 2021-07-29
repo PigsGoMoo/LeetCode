@@ -19,10 +19,18 @@ class Solution:
         
         # Iterate through the length of s, starting from 1 to the end + 1
         for i in range(1, len(s) + 1):
+            # Check each word
             for word in words:
+                # If word length fits in current substring length, i
                 if len(word) <= i:
+                    # Find out where word would begin if put at end of substring
                     j = i - len(word)
+                    # Check if dp[j], which is whether or not words can fit up to index j in string s, is true
+                    # If it's true, that means the substring before this current word is in our word list
+                    # Then make sure the substring matches the current word
                     if dp[j] and s[j:i] == word:
+                        # If both of these are true, we set this current index to true
                         dp[i] = True
+        # Return very last index
         return dp[-1]
         
